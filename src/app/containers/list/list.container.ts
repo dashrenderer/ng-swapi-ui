@@ -1,33 +1,28 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { map } from 'rxjs';
+
+import { ApiResult } from 'src/app/models';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-list-container',
   template: `
-    <h1>{{ entityType | titlecase }}</h1>
-    <pre>{{ entities | json }}</pre>
+    <app-list
+      [entityType]="entityType$ | async"
+      [entities]="(entities$ | async)?.results"
+      [count]="(entities$ | async)?.count"
+      [currentPage]="1"
+    ></app-list>
   `,
   styles: [],
 })
 export class ListContainerComponent {
-  entityType = '';
-  entities: any[] = [];
+  entityType$ = this.route.params.pipe(
+    map((params) => params['entityType'] as string)
+  );
+  entities$ = this.route.data.pipe(
+    map((data) => data['entities'] as ApiResult)
+  );
 
-  private destroy$ = new Subject<void>();
-
-  constructor(private route: ActivatedRoute) {
-    this.initRouteSubscriptions();
-  }
-
-  private initRouteSubscriptions(): void {
-    this.route.data.pipe(takeUntil(this.destroy$)).subscribe(({ entities }) => {
-      this.entities = entities;
-    });
-    this.route.params
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(({ entityType }) => {
-        this.entityType = entityType;
-      });
-  }
+  constructor(private route: ActivatedRoute) {}
 }
