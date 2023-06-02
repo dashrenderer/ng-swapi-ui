@@ -7,10 +7,11 @@ import { ApiResult } from 'src/app/models';
 @Component({
   selector: 'app-list-container',
   template: `
+    <!-- todo: finish implementing currentPage -->
     <app-list
       [entityType]="entityType$ | async"
       [entities]="(entities$ | async)?.results"
-      [count]="(entities$ | async)?.count"
+      [count]="(entities$ | async)?.count || 0"
       [currentPage]="1"
     ></app-list>
   `,

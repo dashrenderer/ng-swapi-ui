@@ -16,7 +16,8 @@ export const entityListResolver: ResolveFn<any> = (
   state: RouterStateSnapshot
 ) => {
   return inject(SwapiService).getEntitiesByType(
-    route.paramMap.get('entityType')!
+    route.paramMap.get('entityType')!,
+    route.queryParams
   );
 };
 
@@ -35,6 +36,7 @@ const routes: Routes = [
     path: ':entityType',
     pathMatch: 'full',
     component: ListContainerComponent,
+    runGuardsAndResolvers: 'pathParamsOrQueryParamsChange',
     resolve: {
       entityList: entityListResolver,
     },

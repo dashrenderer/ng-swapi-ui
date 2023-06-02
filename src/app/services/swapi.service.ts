@@ -6,6 +6,11 @@ import { ApiResult } from '../models';
 
 const BASE_URL = 'https://swapi.dev/api/';
 
+export interface EntityListQueryParams {
+  search?: string;
+  page?: number | string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,11 +21,11 @@ export class SwapiService {
 
   getEntitiesByType<T = any>(
     type: string,
-    search?: string
+    params?: EntityListQueryParams
   ): Observable<ApiResult<T>> {
     let url = BASE_URL + type;
-    if (search) {
-      url += '/?search=' + search;
+    if (params) {
+      url += '/?' + Object.entries(params).map(([key, value]) => `${key}=${value}`).join('&');
     }
 
     return this.http.get<ApiResult<T>>(url).pipe(tap(response => {
