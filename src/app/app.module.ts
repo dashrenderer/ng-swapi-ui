@@ -4,12 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListContainerComponent } from './containers/list/list.container';
-import { ThumbnailComponent } from './components/thumbnail/thumbnail.component';
 import { ListComponent } from './components/list/list.component';
+import { ThumbnailSectionComponent } from './components/thumbnail-section/thumbnail-section.component';
+import { ThumbnailComponent } from './components/thumbnail/thumbnail.component';
+import { ListContainerComponent } from './containers/list/list.container';
 
 @NgModule({
-  declarations: [AppComponent, ListContainerComponent, ThumbnailComponent, ListComponent],
+  declarations: [
+    AppComponent,
+    ListContainerComponent,
+    ThumbnailComponent,
+    ListComponent,
+    ThumbnailSectionComponent,
+  ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
