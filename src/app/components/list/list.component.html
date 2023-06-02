@@ -1,0 +1,6 @@
+<h1>{{ entityType | titlecase }}</h1>
+<app-thumbnail
+  *ngFor="let entity of entities"
+  [type]="entityType"
+  [entity]="entity"
+></app-thumbnail>
