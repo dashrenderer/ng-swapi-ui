@@ -1,1 +1,6 @@
-<p>thumbnail-section works!</p>
+<h2>{{ entityType | titlecase }}</h2>
+<app-thumbnail
+  *ngFor="let entity$ of entities$"
+  [type]="entityType"
+  [entity]="entity$ | async"
+></app-thumbnail>

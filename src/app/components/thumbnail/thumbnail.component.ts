@@ -21,7 +21,7 @@ export class ThumbnailComponent implements OnChanges {
   entityId: string | undefined;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['entity']) {
+    if (changes['entity'] && this.entity) {
       this.entityId = this.extractEntityId(this.entity['url']);
     }
   }
