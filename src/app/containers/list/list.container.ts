@@ -15,7 +15,11 @@ import { ApiResult } from 'src/app/models';
       [currentPage]="1"
     ></app-list>
   `,
-  styles: [],
+  styles: [`
+    :host {
+      display: flex;
+    }
+  `],
 })
 export class ListContainerComponent {
   entityType$ = this.route.params.pipe(

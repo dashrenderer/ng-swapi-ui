@@ -1,8 +1,4 @@
-<p>
-  <a *ngIf="entity; else loading" [routerLink]="['/', type, entityId]">{{
-    entity.name || entity.title
-  }}</a>
-  <ng-template #loading>
-    Loading...
-  </ng-template>
-</p>
+<a *ngIf="entity; else loading" [routerLink]="['/', type, entityId]">{{
+  entity.name || entity.title
+}}</a>
+<ng-template #loading> Loading... </ng-template>

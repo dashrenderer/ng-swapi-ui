@@ -1,0 +1,22 @@
+:host {
+	border-radius: 8px;
+	display: flex;
+	background-color: #9bcaf7;
+	min-height: 4rem;
+  padding: 4px;
+  align-items: end;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

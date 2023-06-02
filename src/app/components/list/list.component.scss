@@ -1,0 +1,18 @@
+:host {
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.thumbnail-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 300px));
+  justify-content: center;
+  max-width: 800px;
+}
+
+app-thumbnail {
+  margin: 8px;
+}
