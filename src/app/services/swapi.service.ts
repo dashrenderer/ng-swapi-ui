@@ -25,14 +25,20 @@ export class SwapiService {
   ): Observable<ApiResult<T>> {
     let url = BASE_URL + type;
     if (params) {
-      url += '/?' + Object.entries(params).map(([key, value]) => `${key}=${value}`).join('&');
+      url +=
+        '/?' +
+        Object.entries(params)
+          .map(([key, value]) => `${key}=${value}`)
+          .join('&');
     }
 
-    return this.http.get<ApiResult<T>>(url).pipe(tap(response => {
-      response.results.forEach(result => {
-        this.cachedEntities.set((result as any).url, result);
+    return this.http.get<ApiResult<T>>(url).pipe(
+      tap((response) => {
+        response.results.forEach((result) => {
+          this.cachedEntities.set((result as any).url, result);
+        });
       })
-    }));
+    );
   }
 
   getEntityById<T = any>(type: string, id: string): Observable<T> {
@@ -47,6 +53,8 @@ export class SwapiService {
       return of(this.cachedEntities.get(url));
     }
 
-    return this.http.get<T>(url).pipe(tap(result => this.cachedEntities.set(url, result)));
+    return this.http
+      .get<T>(url)
+      .pipe(tap((result) => this.cachedEntities.set(url, result)));
   }
 }
