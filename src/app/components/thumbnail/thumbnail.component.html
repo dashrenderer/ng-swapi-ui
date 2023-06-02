@@ -1,1 +1,4 @@
-<p>{{ type | titlecase }}: {{ entity.name || entity.title }}</p>
+<p>
+  {{ type | titlecase }}:
+  <a [routerLink]="['/', type, entityId]">{{ entity.name || entity.title }}</a>
+</p>
