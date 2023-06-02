@@ -10,7 +10,17 @@ import { map } from 'rxjs';
       [entity]="entity$ | async"
     ></app-detail>
   `,
-  styles: [],
+  styles: [
+    `
+      :host {
+        display: flex;
+      }
+
+      app-detail {
+        margin: auto;
+      }
+    `,
+  ],
 })
 export class DetailContainerComponent {
   entityType$ = this.route.params.pipe(
