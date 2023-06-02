@@ -1,0 +1,43 @@
+<h1>{{ entity?.name || entity?.title }}</h1>
+
+<ul>
+  <li *ngFor="let property of properties">
+    {{ property[0] | titlecase }}: {{ property[1] }}
+  </li>
+</ul>
+
+<app-thumbnail-section
+  *ngIf="films.length > 0"
+  entityType="films"
+  [entityUrls]="films"
+></app-thumbnail-section>
+
+<app-thumbnail-section
+  *ngIf="people.length > 0"
+  entityType="people"
+  [entityUrls]="people"
+></app-thumbnail-section>
+
+<app-thumbnail-section
+  *ngIf="planets.length > 0"
+  entityType="planets"
+  [entityUrls]="planets"
+></app-thumbnail-section>
+
+<app-thumbnail-section
+  *ngIf="species.length > 0"
+  entityType="species"
+  [entityUrls]="species"
+></app-thumbnail-section>
+
+<app-thumbnail-section
+  *ngIf="starships.length > 0"
+  entityType="starships"
+  [entityUrls]="starships"
+></app-thumbnail-section>
+
+<app-thumbnail-section
+  *ngIf="vehicles.length > 0"
+  entityType="vehicles"
+  [entityUrls]="vehicles"
+></app-thumbnail-section>

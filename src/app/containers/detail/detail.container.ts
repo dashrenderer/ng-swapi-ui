@@ -2,27 +2,21 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 
-import { ApiResult } from 'src/app/models';
-
 @Component({
-  selector: 'app-list-container',
+  selector: 'app-detail-container',
   template: `
-    <app-list
+    <app-detail
       [entityType]="entityType$ | async"
-      [entities]="(entities$ | async)?.results"
-      [count]="(entities$ | async)?.count"
-      [currentPage]="1"
-    ></app-list>
+      [entity]="entity$ | async"
+    ></app-detail>
   `,
   styles: [],
 })
-export class ListContainerComponent {
+export class DetailContainerComponent {
   entityType$ = this.route.params.pipe(
     map((params) => params['entityType'] as string)
   );
-  entities$ = this.route.data.pipe(
-    map((data) => data['entityList'] as ApiResult)
-  );
+  entity$ = this.route.data.pipe(map((data) => data['entity']));
 
   constructor(private route: ActivatedRoute) {}
 }

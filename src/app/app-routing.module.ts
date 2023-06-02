@@ -9,8 +9,9 @@ import {
 
 import { ListContainerComponent } from './containers/list/list.container';
 import { SwapiService } from './services/swapi.service';
+import { DetailContainerComponent } from './containers/detail/detail.container';
 
-export const entityResolver: ResolveFn<any> = (
+export const entityListResolver: ResolveFn<any> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
@@ -19,12 +20,31 @@ export const entityResolver: ResolveFn<any> = (
   );
 };
 
+export const entityResolver: ResolveFn<any> = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
+  return inject(SwapiService).getEntityById(
+    route.paramMap.get('entityType')!,
+    route.paramMap.get('id')!
+  );
+};
+
 const routes: Routes = [
   {
     path: ':entityType',
+    pathMatch: 'full',
     component: ListContainerComponent,
     resolve: {
-      entities: entityResolver,
+      entityList: entityListResolver,
+    },
+  },
+  {
+    path: ':entityType/:id',
+    pathMatch: 'full',
+    component: DetailContainerComponent,
+    resolve: {
+      entity: entityResolver,
     },
   },
 ];
