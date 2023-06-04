@@ -12,22 +12,23 @@ import { ApiResult } from 'src/app/models';
       [entityType]="entityType$ | async"
       [entities]="(entities$ | async)?.results"
       [count]="(entities$ | async)?.count || 0"
-      [currentPage]="1"
+      [currentPage]="(currentPage$ | async) || 1"
     ></app-list>
   `,
-  styles: [`
-    :host {
-      display: flex;
-    }
-  `],
+  styles: [
+    `
+      :host {
+        display: flex;
+      }
+    `,
+  ],
 })
 export class ListContainerComponent {
-  entityType$ = this.route.params.pipe(
-    map((params) => params['entityType'] as string)
-  );
-  entities$ = this.route.data.pipe(
-    map((data) => data['entityList'] as ApiResult)
-  );
+  entityType$ = this.route.params.pipe(map((params) => params['entityType'] as string));
+
+  entities$ = this.route.data.pipe(map((data) => data['entityList'] as ApiResult));
+
+  currentPage$ = this.route.queryParams.pipe(map((query) => +query['page']));
 
   constructor(private route: ActivatedRoute) {}
 }

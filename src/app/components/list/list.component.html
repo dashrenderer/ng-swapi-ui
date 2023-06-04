@@ -1,28 +1,11 @@
 <h1>{{ entityType | titlecase }}</h1>
 <div>
-  <a
-    *ngIf="currentPage - 1 > 0"
-    [routerLink]="['/', entityType]"
-    [queryParams]="{ page: currentPage - 1 }"
-    >&lt;-</a
-  >
-  <a
-    *ngFor="let page of pages"
-    [routerLink]="['/', entityType]"
-    [queryParams]="{ page: page }"
-    >{{ page }}</a
-  >
-  <a
-    *ngIf="currentPage + 1 < pages.length"
-    [routerLink]="['/', entityType]"
-    [queryParams]="{ page: currentPage + 1 }"
+  <a *ngIf="currentPage > 1" [routerLink]="['/', entityType]" [queryParams]="{ page: currentPage - 1 }">&lt;-</a>
+  <a *ngFor="let page of pages" [routerLink]="['/', entityType]" [queryParams]="{ page: page }">{{ page }}</a>
+  <a *ngIf="currentPage < pages.length" [routerLink]="['/', entityType]" [queryParams]="{ page: currentPage + 1 }"
     >-&gt;</a
   >
 </div>
 <div class="thumbnail-wrapper">
-  <app-thumbnail
-    *ngFor="let entity of entities"
-    [type]="entityType"
-    [entity]="entity"
-  ></app-thumbnail>
+  <app-thumbnail *ngFor="let entity of entities" [type]="entityType" [entity]="entity"></app-thumbnail>
 </div>

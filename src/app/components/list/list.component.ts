@@ -19,11 +19,15 @@ export class ListComponent<T> implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['count']) {
+      const newPages: number[] = [];
       let page = 0;
+
       while (page * 10 < this.count) {
         page++;
-        this.pages.push(page);
+        newPages.push(page);
       }
+
+      this.pages = newPages;
     }
   }
 }
