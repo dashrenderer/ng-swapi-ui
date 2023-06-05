@@ -1,35 +1,9 @@
-import { NgModule, inject } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  ResolveFn,
-  RouterModule,
-  RouterStateSnapshot,
-  Routes,
-} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { ListContainerComponent } from './containers/list/list.container';
-import { SwapiService } from './services/swapi.service';
 import { DetailContainerComponent } from './containers/detail/detail.container';
-
-export const entityListResolver: ResolveFn<any> = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-) => {
-  return inject(SwapiService).getEntitiesByType(
-    route.paramMap.get('entityType')!,
-    route.queryParams
-  );
-};
-
-export const entityResolver: ResolveFn<any> = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-) => {
-  return inject(SwapiService).getEntityById(
-    route.paramMap.get('entityType')!,
-    route.paramMap.get('id')!
-  );
-};
+import { ListContainerComponent } from './containers/list/list.container';
+import { entityListResolver, entityResolver } from './functions/entity-resolvers';
 
 const routes: Routes = [
   {
