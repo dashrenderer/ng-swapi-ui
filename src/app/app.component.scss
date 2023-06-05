@@ -9,3 +9,13 @@ li {
   display: inline-block;
   margin: 0 8px;
 }
+
+a {
+  text-decoration: none;
+  color: lightblue;
+
+  &:hover,
+  &:focus {
+    filter: drop-shadow(0 2px 4px white);
+  }
+}
