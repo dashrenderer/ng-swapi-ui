@@ -1,14 +1,15 @@
 <h1>{{ entityType | titlecase }}</h1>
-<div>
+<div *ngIf="pages.length > 1" class="paginator">
   <a
     *ngIf="currentPage > 1"
     [routerLink]="['/', entityType]"
     [queryParams]="{ page: currentPage - 1 }"
     queryParamsHandling="merge"
-    >&lt;-</a
+    >Prev</a
   >
   <a
     *ngFor="let page of pages"
+    [class.current-page]="currentPage === page"
     [routerLink]="['/', entityType]"
     [queryParams]="{ page: page }"
     queryParamsHandling="merge"
@@ -19,7 +20,7 @@
     [routerLink]="['/', entityType]"
     [queryParams]="{ page: currentPage + 1 }"
     queryParamsHandling="merge"
-    >-&gt;</a
+    >Next</a
   >
 </div>
 <div class="thumbnail-wrapper">

@@ -2,8 +2,37 @@
   margin: auto;
 }
 
-h1 {
-  text-align: center;
+.paginator {
+  display: flex;
+  justify-content: center;
+
+  a {
+    background-color: white;
+    font-weight: 600;
+    padding: 8px 16px;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      background-color: rgb(190 210 255);
+    }
+  }
+
+  a + a {
+    border-left: 1px solid gray;
+  }
+
+  a:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+
+  a:last-child {
+    border-radius: 0 8px 0 0;
+  }
+}
+
+.current-page {
+  box-shadow: inset 0 0 4px 2px purple;
 }
 
 .thumbnail-wrapper {
