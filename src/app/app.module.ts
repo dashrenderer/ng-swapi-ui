@@ -5,10 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DetailComponent } from './components/detail/detail.component';
-import { ListComponent } from './components/list/list.component';
-import { ThumbnailSectionComponent } from './components/thumbnail-section/thumbnail-section.component';
-import { ThumbnailComponent } from './components/thumbnail/thumbnail.component';
+import {
+  DetailComponent,
+  ListComponent,
+  SearchComponent,
+  ThumbnailComponent,
+  ThumbnailSectionComponent,
+} from './components';
 import { DetailContainerComponent } from './containers/detail/detail.container';
 import { ListContainerComponent } from './containers/list/list.container';
 
@@ -21,6 +24,7 @@ import { ListContainerComponent } from './containers/list/list.container';
     ThumbnailSectionComponent,
     DetailContainerComponent,
     DetailComponent,
+    SearchComponent,
   ],
   imports: [BrowserModule, HttpClientModule, ReactiveFormsModule, AppRoutingModule],
   providers: [],

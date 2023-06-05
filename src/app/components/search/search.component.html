@@ -1,0 +1,13 @@
+<form class="search-form" [formGroup]="searchForm" (ngSubmit)="submitSearch()">
+  <label for="searchEntityType" class="visibly-hidden">Entity type to search</label>
+  <select name="searchEntityType" id="searchEntityType" formControlName="entityType">
+    <option *ngFor="let type of entityTypes" [value]="type.url">
+      {{ type.name }}
+    </option>
+  </select>
+
+  <label for="searchText" class="visibly-hidden">Search text</label>
+  <input type="text" id="searchText" formControlName="searchText" autocomplete="off" />
+
+  <button type="submit">Search</button>
+</form>
